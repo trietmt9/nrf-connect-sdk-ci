@@ -1,7 +1,7 @@
 FROM debian:stable-slim
 
 #ARG ARCH=amd64
-ARG NRF_CONNECT_TAG=v2.7.0
+ARG NRF_CONNECT_TAG=v2.9.0
 # Should be for selected NRF_CONNECT_TAG
 ARG ZEPHYR_NEEDED_TAG=0.17.0
 # For new versions - xz
@@ -61,13 +61,14 @@ RUN ARCH="$(dpkg --print-architecture)" && \
     cd /workdir && \
     mkdir ncs && \
     cd ncs && \
-    #clone github 
+    # Git clone 
     git clone https://github.com/Nucode01/NU40_Devkit-devicetree.git &&\
     # Get NRF SDK code
     west init -m https://github.com/nrfconnect/sdk-nrf --mr $NRF_CONNECT_TAG && \
-    cp -r NU40_Devkit-devicetree/nu40_b_dev02 nrf/boards/nordic &&\
     west update && \
     west zephyr-export && \
+    cp -r NU40_Devkit-devicetree/nu40_b_dev02 zephyr/boards/arm/ && \
+    west update && \
     pip3 install -r zephyr/scripts/requirements.txt --break-system-packages && \
     pip3 install -r nrf/scripts/requirements.txt --break-system-packages && \
     pip3 install -r bootloader/mcuboot/scripts/requirements.txt --break-system-packages && \
