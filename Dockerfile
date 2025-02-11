@@ -66,9 +66,9 @@ RUN ARCH="$(dpkg --print-architecture)" && \
     # Get NRF SDK code
     west init -m https://github.com/nrfconnect/sdk-nrf --mr $NRF_CONNECT_TAG && \
     west update && \
-    west zephyr-export && \
     cp -r NU40_Devkit-devicetree/nu40_b_dev02 zephyr/boards/arm/ && \
     west update && \
+    west zephyr-export && \
     pip3 install -r zephyr/scripts/requirements.txt --break-system-packages && \
     pip3 install -r nrf/scripts/requirements.txt --break-system-packages && \
     pip3 install -r bootloader/mcuboot/scripts/requirements.txt --break-system-packages && \
