@@ -18,7 +18,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: trietmt9/nrf-connect-sdk
+          images: stephentruong/nrf-connect-sdk
         
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
