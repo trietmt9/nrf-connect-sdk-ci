@@ -12,6 +12,7 @@ inputs:
     required: true
     default: 'build'
 runs:
+  platform: linux/x86_64
   using: 'docker'
   image: 'docker://stephentruong/nrf-connect-sdk-ci:v2.7.0'
   args:
