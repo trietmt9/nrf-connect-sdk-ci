@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM debian:stable-slim AS builder
 
 #ARG ARCH=amd64
 ARG NRF_CONNECT_TAG=v2.7.0
@@ -23,6 +23,8 @@ RUN ARCH="$(dpkg --print-architecture)" && \
     apt-get update && \
     apt-get install \
     --no-install-recommends \
+    qemu-user-static \
+    binfmt-support \
     git \
     cmake \
     ninja-build \
